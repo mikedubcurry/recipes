@@ -1,15 +1,17 @@
-import { promises as fs } from 'fs';
 import { join } from 'path';
+import { promises as fs } from 'fs';
 
-import RecipeCard from '../components/RecipeCard';
+import RecipeCard from '../../components/RecipeCard';
 
-export default function Home({ recipes }) {
+function AllRecipes({ recipes }) {
 	return (
-		<div className="container mx-auto">
+		<ul>
 			{recipes.map((recipe) => (
-				<RecipeCard key={recipe.dishTitle} recipe={recipe} />
+				<li key={recipe.dishTitle}>
+					<RecipeCard recipe={recipe} />
+				</li>
 			))}
-		</div>
+		</ul>
 	);
 }
 
@@ -29,3 +31,5 @@ export async function getStaticProps(context) {
 		props: { recipes: await Promise.all(recipes) },
 	};
 }
+
+export default AllRecipes;
