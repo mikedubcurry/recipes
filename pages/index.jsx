@@ -6,7 +6,7 @@ import RecipeCard from "../components/RecipeCard";
 
 export default function Home({ recipes }) {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto p-4">
             <FilteredRecipes recipes={recipes} />
         </div>
     );

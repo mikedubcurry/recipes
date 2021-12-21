@@ -1,19 +1,20 @@
 {
-	"dishTitle": "Peanut-Butter and Jelly Sandwich",
-	"slug": "peanut-butter-jelly",
-	"prepTime": 2,
-	"totalTime": 2,
-	"description": "The classic peanut-butter and jelly. Few sandwiches can beat this.",
-	"ingredients": [
-		{ "ingredient": "Sliced Bread", "amount": 2, "unit": "slices" },
-		{ "ingredient": "Creamy Peanut-Butter", "amount": 2, "unit": "tablespoons" },
-		{ "ingredient": "Grape Jelly", "amount": 1, "unit": "tablespoon" }
-	],
-	"procedure": [
-		"Lay the two slices of bread flat on a plate.",
-		"Spread 2 tablespoons of peanut-butter on one slice of bread.",
-		"Spread 1 tablespoon of grape jelly on the other slice of bread.",
-		"Take the slice of bread with the peanut-butter on it, and place it pb-side down, on top of the jelly slice.",
-		"Enjoy!"
-	]
+    "dishTitle": "Peanut-Butter and Jelly Sandwich",
+    "slug": "peanut-butter-jelly",
+    "prepTime": 2,
+    "totalTime": 2,
+    "description": "The classic peanut-butter and jelly. Few sandwiches can beat this.",
+    "tags": ["lunch", "simple", "budget", "sandwich"],
+    "ingredients": [
+        { "ingredient": "Sliced Bread", "amount": 2, "unit": "slices" },
+        { "ingredient": "Creamy Peanut-Butter", "amount": 2, "unit": "tablespoons" },
+        { "ingredient": "Grape Jelly", "amount": 1, "unit": "tablespoon" }
+    ],
+    "procedure": [
+        "Lay the two slices of bread flat on a plate.",
+        "Spread 2 tablespoons of peanut-butter on one slice of bread.",
+        "Spread 1 tablespoon of grape jelly on the other slice of bread.",
+        "Take the slice of bread with the peanut-butter on it, and place it pb-side down, on top of the jelly slice.",
+        "Enjoy!"
+    ]
 }

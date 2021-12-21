@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 function RecipeCard({ recipe }) {
     return (
         <Link href={`/recipes/${recipe.slug}`}>
-            <article className="cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl bg-red-300 hover:bg-red-400 p-8 rounded-xl">
+            <a className="w-full">
+            <article className="cursor-pointer w-full mb-4 transition-all duration-300 shadow-lg hover:shadow-xl bg-red-300 hover:bg-red-400 p-8 rounded-xl">
                 <header className="text-xl">{recipe.dishTitle}</header>
                 <p>{recipe.description}</p>
             </article>
+            </a>
         </Link>
     );
 }
