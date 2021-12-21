@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import RecipeCard from "./RecipeCard";
+import RecipeFilter from './RecipeFilter'
 
 function FilteredRecipes({ recipes }) {
     const [filteredRecipes, setFilteredRecipes] = useState(recipes);
@@ -9,7 +10,9 @@ function FilteredRecipes({ recipes }) {
     useEffect(() => {
         if (filterInput) {
             let filtered = recipes.filter((recipe) => {
-                return ingredientsInclude(recipe, filterInput) || dishTitleInclude(recipe, filterInput);
+                return (
+                    ingredientsInclude(recipe, filterInput) || dishTitleInclude(recipe, filterInput)
+                );
             });
             setFilteredRecipes(filtered);
         } else {
@@ -18,21 +21,12 @@ function FilteredRecipes({ recipes }) {
     }, [filterInput]);
 
     return (
-        <>
-            <label htmlFor="filterRecipes"></label>
-            <input
-                autoComplete="off"
-                placeholder="Filter recipes"
-                id="filterRecipe"
-                name="filterRecipe"
-                type="text"
-                value={filterInput}
-                onChange={(e) => setFilterInput(e.target.value)}
-            />
+        <section className="py-4 flex flex-col items-center">
+            <RecipeFilter inputState={[filterInput, setFilterInput]} />
             {filteredRecipes.map((recipe) => (
                 <RecipeCard key={recipe.dishTitle} recipe={recipe} />
             ))}
-        </>
+        </section>
     );
 }
 
