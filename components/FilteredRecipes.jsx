@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import FilterBar from "./FilterBar";
 
 import RecipeCard from "./RecipeCard";
-import RecipeFilter from './RecipeFilter'
+import RecipeFilter from "./RecipeFilter";
 
 function FilteredRecipes({ recipes }) {
     const [filteredRecipes, setFilteredRecipes] = useState(recipes);
@@ -22,10 +23,12 @@ function FilteredRecipes({ recipes }) {
 
     return (
         <section className="py-4 flex flex-col items-center">
-            <RecipeFilter inputState={[filterInput, setFilterInput]} />
             {filteredRecipes.map((recipe) => (
                 <RecipeCard key={recipe.dishTitle} recipe={recipe} />
             ))}
+            <FilterBar>
+                <RecipeFilter inputState={[filterInput, setFilterInput]} />
+            </FilterBar>
         </section>
     );
 }
