@@ -1,6 +1,4 @@
-import { useRouter } from 'next/router';
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { supabase } from '../../utils/supabaseClient';
 
 function RecipePage({ recipe }) {
 	return (
@@ -31,25 +29,21 @@ function RecipePage({ recipe }) {
 
 export async function getStaticProps(context) {
 	const { slug } = context.params;
-	const recipePath = join(process.cwd(), 'recipes');
-	const recipe = await fs.readFile(join(recipePath, slug + '.json'), 'utf-8');
+	const { data: recipe, error } = await supabase.from('recipes').select('*').eq('slug', slug);
+	if (error) {
+		console.log('something happened...', error);
+		return;
+	}
 
-	return { props: { recipe: JSON.parse(recipe) } };
+	return {
+		props: { recipe: recipe[0] },
+	};
 }
 
 export async function getStaticPaths() {
-	const recipePath = join(process.cwd(), 'recipes');
+	const { data: slugs, error } = await supabase.from('recipes').select('slug');
 
-	const filenames = await fs.readdir(recipePath);
-
-	const slugs = filenames.map(async (filename) => {
-		const filePath = join(recipePath, filename);
-		const recipe = await fs.readFile(filePath, 'utf-8');
-
-		return { params: { slug: JSON.parse(recipe).slug } };
-	});
-
-	return { paths: await Promise.all(slugs), fallback: false };
+	return { paths: slugs.map(slug => ({params: slug})), fallback: false };
 }
 
 export default RecipePage;

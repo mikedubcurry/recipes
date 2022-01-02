@@ -1,13 +1,13 @@
-import { join } from 'path';
-import { promises as fs } from 'fs';
+import { supabase } from '../../utils/supabaseClient';
 
 import RecipeCard from '../../components/RecipeCard';
 
 function AllRecipes({ recipes }) {
+
 	return (
-		<ul>
+		<ul className="container m-auto min-w-fill">
 			{recipes.map((recipe) => (
-				<li key={recipe.dishTitle}>
+				<li key={recipe.id}>
 					<RecipeCard recipe={recipe} />
 				</li>
 			))}
@@ -16,19 +16,10 @@ function AllRecipes({ recipes }) {
 }
 
 export async function getStaticProps(context) {
-	const recipePath = join(process.cwd(), 'recipes');
-
-	const filenames = await fs.readdir(recipePath);
-
-	const recipes = filenames.map(async (filename) => {
-		const filePath = join(recipePath, filename);
-		const recipe = await fs.readFile(filePath, 'utf-8');
-
-		return JSON.parse(recipe);
-	});
+	let { data: recipes, error } = await supabase.from('recipes').select('*');
 
 	return {
-		props: { recipes: await Promise.all(recipes) },
+		props: { recipes },
 	};
 }
 

@@ -1,14 +1,14 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { supabase } from '../../utils/supabaseClient';
 
 export default async function handler(req, res) {
-	const recipePath = join(process.cwd(), 'recipes');
+	const { data: recipes, error } = await supabase.from('recipes').select('*');
 
-	const filenames = await fs.readdir(recipePath);
+	if (error) {
+		res.redirect(500);
+	}
 
-	const randomFile = filenames[Math.floor(Math.random() * filenames.length)];
+	let randomIndex = Math.floor(Math.random() * recipes.length);
+	let recipe = recipes[randomIndex];
 
-	const recipe = await fs.readFile(join(recipePath, randomFile), 'utf-8');
-
-	res.redirect(303, `/recipes/${JSON.parse(recipe).slug}`);
+	res.redirect(303, `/recipes/${recipe.slug}`);
 }

@@ -1,31 +1,27 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { supabase } from '../utils/supabaseClient';
 
 import RecipeCard from '../components/RecipeCard';
 
-export default function Home({ recipes }) {
+export default function Home({ recipes, error }) {
+	if (error) {
+		return (
+			<div className="container flex flex-col items-center justify-center m-auto h-full bg-red-400/50">
+				<h1 className='text-xl mb-5'>Sorry</h1>
+				<p>Something went wrong...</p>
+			</div>
+		);
+	}
 	return (
-		<div className="container mx-auto">
-			{recipes.map((recipe) => (
-				<RecipeCard key={recipe.dishTitle} recipe={recipe} />
-			))}
+		<div className="container m-auto p-auto h-full">
+			{recipes && recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)}
 		</div>
 	);
 }
 
 export async function getStaticProps(context) {
-	const recipePath = join(process.cwd(), 'recipes');
-
-	const filenames = await fs.readdir(recipePath);
-
-	const recipes = filenames.map(async (filename) => {
-		const filePath = join(recipePath, filename);
-		const recipe = await fs.readFile(filePath, 'utf-8');
-
-		return JSON.parse(recipe);
-	});
+	let { data: recipes, error } = await supabase.from('recipes').select('*');
 
 	return {
-		props: { recipes: await Promise.all(recipes) },
+		props: { recipes, error },
 	};
 }
