@@ -1,3 +1,4 @@
+import Auth from './Auth';
 import Nav from './Nav';
 
 function Layout({ children }) {
