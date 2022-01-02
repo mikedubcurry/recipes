@@ -1,33 +1,35 @@
-import Link from 'next/link';
-import PropTypes from 'prop-types';
+import Link from "next/link";
+import PropTypes from "prop-types";
 
 function RecipeCard({ recipe }) {
-	return (
-		<Link href={`/recipes/${recipe.slug}`}>
-			<article className="m-2 mt-0 mb-8 cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl bg-red-300 hover:bg-red-400 p-8 rounded-xl">
-				<header className="text-xl">{recipe.recipe_name}</header>
-				<p>{recipe.description}</p>
-			</article>
-		</Link>
-	);
+    return (
+        <Link href={`/recipes/${recipe.slug}`}>
+            <a className="w-full">
+            <article className="cursor-pointer w-full mb-4 transition-all duration-300 shadow-lg hover:shadow-xl bg-red-300 hover:bg-red-400 p-8 rounded-xl">
+                <header className="text-xl">{recipe.dishTitle}</header>
+                <p>{recipe.description}</p>
+            </article>
+            </a>
+        </Link>
+    );
 }
 
 export default RecipeCard;
 
 RecipeCard.propTypes = {
-	recipe: PropTypes.shape({
-		dishTitle: PropTypes.string,
-		slug: PropTypes.string,
-		description: PropTypes.string,
-		prepTime: PropTypes.number,
-		totalTime: PropTypes.number,
-		ingredients: PropTypes.arrayOf(
-			PropTypes.shape({
-				ingredient: PropTypes.string,
-				amount: PropTypes.number,
-				unit: PropTypes.string,
-			})
-		),
-		procedure: PropTypes.arrayOf(PropTypes.string),
-	}),
+    recipe: PropTypes.shape({
+        dishTitle: PropTypes.string,
+        slug: PropTypes.string,
+        description: PropTypes.string,
+        prepTime: PropTypes.number,
+        totalTime: PropTypes.number,
+        ingredients: PropTypes.arrayOf(
+            PropTypes.shape({
+                ingredient: PropTypes.string,
+                amount: PropTypes.number,
+                unit: PropTypes.string,
+            })
+        ),
+        procedure: PropTypes.arrayOf(PropTypes.string),
+    }),
 };

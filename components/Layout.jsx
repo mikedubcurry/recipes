@@ -1,13 +1,12 @@
-import Auth from './Auth';
-import Nav from './Nav';
+import Nav from "./Nav";
 
 function Layout({ children }) {
-	return (
-		<>
-			<Nav />
-			<main className="h-screen bg-slate-200">{children}</main>
-		</>
-	);
+    return (
+        <div className="min-h-screen h-full">
+            <Nav />
+            <main className="min-h-full bg-slate-200">{children}</main>
+        </div>
+    );
 }
 
 export default Layout;

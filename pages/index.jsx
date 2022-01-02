@@ -1,6 +1,6 @@
 import { supabase } from '../utils/supabaseClient';
 
-import RecipeCard from '../components/RecipeCard';
+import RecipeCard from "../components/RecipeCard";
 
 export default function Home({ recipes, error }) {
 	if (error) {
