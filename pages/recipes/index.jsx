@@ -15,8 +15,8 @@ function AllRecipes({ recipes }) {
 	);
 }
 
-export async function getStaticProps(context) {
-	let { data: recipes, error } = await supabase.from('recipes').select('*');
+export async function getStaticProps() {
+    let { data: recipes, error } = await supabase.from("recipes").select("*, tags (id, tag)");
 
 	return {
 		props: { recipes },
