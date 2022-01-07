@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
+import Tag from "./Tag";
 
 function RecipeCard({ recipe }) {
     const capitalize = (str) =>
@@ -8,7 +9,7 @@ function RecipeCard({ recipe }) {
             .map((wd) => wd.slice(0, 1).toUpperCase() + wd.slice(1, wd.length))
             .join(" ");
 
-    recipe.tags = [...recipe.tags, ...recipe.tags].map((tag, i) => ({ ...tag, id: i }));
+    // recipe.tags = [...recipe.tags, ...recipe.tags].map((tag, i) => ({ ...tag, id: i }));
 
     return (
         <Link href={`/recipes/${recipe.slug}`}>
@@ -26,12 +27,7 @@ function RecipeCard({ recipe }) {
                         {recipe.tags.slice(0, 4).map(
                             // truncate tags if longer than 4
                             ({ tag, id }) => (
-                                <li
-                                    className="transition bg-orange-400 hover:bg-orange-300 px-4 py-2 rounded-xl"
-                                    key={id}
-                                >
-                                    {tag}
-                                </li>
+                                <Tag tag={tag} key={id}/>
                             )
                         )}
                         {recipe.tags.length > 4 ? (

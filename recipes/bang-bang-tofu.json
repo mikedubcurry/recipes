@@ -6,27 +6,28 @@
     "description": "A nice spin on tofu with a crispy panko coating and a spicy sriacha sauce. Goes great with broccoli or sauteed brussles sprouts.",
     "tags": ["dinner", "tofu", "baked", "spicy"],
     "ingredients": [
-        { "ingredient": "Extra Firm Tofu", "amount": 1, "unit": "block" },
-        { "ingredient": "Panko Bread Crumbs", "amount": 3, "unit": "cups" },
-        { "ingredient": "Garlic Powder", "amount": 2, "unit": "teaspoons" },
+        { "ingredient": "Vegan Chicken", "amount": 8, "unit": "strips" },
+        { "ingredient": "Panko Bread Crumbs", "amount": 1, "unit": "cups" },
+        { "ingredient": "Croutons or Stuffing", "amount": 2, "unit": "cups" },
         { "ingredient": "Onion Powder", "amount": 1, "unit": "teaspoon" },
         { "ingredient": "Salt", "amount": 0.5, "unit": "teaspoon" },
         { "ingredient": "Black Pepper", "amount": 1, "unit": "teaspoon" },
-        { "ingredient": "Water", "amount": 1, "unit": "cup" },
+        { "ingredient": "Garlic Powder", "amount": 1, "unit": "teaspoon" },
         { "ingredient": "Flour", "amount": 1, "unit": "cup" },
-        { "ingredient": "Vegan Mayo", "amount": 1, "unit": "cup" },
-        { "ingredient": "Sriacha", "amount": 2, "unit": "tablespoons" },
-        { "ingredient": "Rice Wine Vinegar", "amount": 1, "unit": "teaspoon" }
+        { "ingredient": "Water", "amount": 1, "unit": "cup" },
+        { "ingredient": "Cayanne", "amount": 1, "unit": "teaspoon" },
+        { "ingredient": "Canola Oil", "amount": 2, "unit": "cups" }
     ],
     "procedure": [
-        "Pre-heat oven to 350 degrees.",
-        "Drain and Press tofu to remove some excess water. Cut tofu into 3/4 inch cubes and set them aside.",
-        "In a large bowl, add flour, garlic and onion powder, salt, and water and mix.",
-        "In a second bowl, add panko bread crumbs.",
-        "Line a baking tray with parchment paper or aluminum foil.",
-        "Start by dipping the tofu cubes into the flour-water mixture and then coating with panko, finally place it on the baking tray. Repeat until all of the tofu cubes have been covered with bread crumbs.",
-        "Once all the tofu cubes have been coated, and the oven is pre-heated, place them on the center rack for about 15-18 minutes, or until the panko is light brown. Leave in a little longer for a crsipier finish.",
-        "While the tofu is cooking, add the mayo, sriacha and rice wine vinegar to a small bowl and mix well.",
-        "When the tofu has finished cooking, you can plate them and use the sauce to dip, or you can coat the baked tofus in the sauce (this will make them less crispy)."
+        "Add water, flour, salt, pepper, cayanne, garlic powder, and onion powder to a small bowl, then mix until it acheives a batter-like consistency.",
+        "Crush croutons into a consitency similar to granulated sugar.",
+        "Add crushed croutons and panko bread crumbs to a large bowl.",
+        "Heat oil in a large sauce pan over medium-low heat.",
+        "Dip vegan chicken strips in batter, then bread crumbs and place on a sheet or plate.",
+        "Once all strips are coated in batter and bread crumbs, start carefully adding strips to hot oil.",
+        "Periodically check strips and flip once the under side is golden brown.",
+        "Cook other side and remove from oil.",
+        "Place fried strips on a paper towel to drain excess oil.",
+        "Serve hot and enjoy!"
     ]
 }
