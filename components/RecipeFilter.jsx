@@ -2,10 +2,10 @@ import TagList from "./TagList";
 
 function RecipeFilter({ inputState, dispatch, tags }) {
 	const [filterInput, setFilterInput] = inputState;
-console.log(tags);
+
 	return (
 		<div className="container w-full flex-col sm:flex-row sm:w-1/2 items-center mb-4 flex justify-center gap-2 md:gap-4">
-			<label className="self-start md:self-center" htmlFor="filterRecipes">
+			<label className="self-start sm:self-center" htmlFor="filterRecipes">
 				Filter:
 			</label>
 			<input
