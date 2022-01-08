@@ -1,14 +1,13 @@
-import Tag from "./Tag";
+import Tag from './Tag';
 
-function TagList({ tags, selectedState }) {
-	const [selectedTags, setSelectedTags] = selectedState
-    return (
-        <ul className="flex items-center">
-            {tags.map(({tag, id}, i) => (
-				<Tag tag={tag} key={id} selected={selectedTags.includes(i)} />
-            ))}
-        </ul>
-    );
+function TagList({ tags, selectedTags, dispatch }) {
+	return (
+		<ul className="flex items-center">
+			{tags.map(({ tag, id }, i) => (
+				<Tag selected={selectedTags.includes(id)} dispatch={dispatch} tag={{tag, id}} key={id} />
+			))}
+		</ul>
+	);
 }
 
 export default TagList;

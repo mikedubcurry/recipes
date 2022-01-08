@@ -27,7 +27,7 @@ function RecipeCard({ recipe }) {
                         {recipe.tags.slice(0, 4).map(
                             // truncate tags if longer than 4
                             ({ tag, id }) => (
-                                <Tag tag={tag} key={id}/>
+                                <Tag tag={{tag, id}} key={id}/>
                             )
                         )}
                         {recipe.tags.length > 4 ? (
