@@ -17,8 +17,8 @@ export default function Home({ recipes, tags, error }) {
 	return (
 		<>
 			{/* <TagList tags={tags} /> */}
-			<div className="md:container sm:container grid md:grid-cols-2 gap-4 mx-2 sm:mx-auto py-4 p-auto h-full">
-                <FilteredRecipes tags={tags} recipes={recipes}/>
+			<div className="md:container sm:container grid md:grid-cols-2 gap-4 mx-2 sm:mx-auto py-4 p-auto px-2 h-full">
+				<FilteredRecipes tags={tags} recipes={recipes} />
 				{/* {recipes && recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)} */}
 			</div>
 		</>
