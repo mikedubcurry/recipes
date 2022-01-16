@@ -54,7 +54,7 @@ function dishTitleInclude(recipe, input) {
 function tagsInclude(recipe, tags) {
 	let recipeTags = recipe.tags.map(({ id }) => id);
 
-    for (let id of tags) {
+	for (let id of tags) {
 		if (!recipeTags.includes(id)) {
 			return false;
 		}
