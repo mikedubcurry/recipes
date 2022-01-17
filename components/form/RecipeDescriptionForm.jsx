@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-function RecipeDescriptionForm({ dispatch }) {
-	const [name, setName] = useState('');
-	const [desc, setDesc] = useState('');
-	const [prepTime, setPrepTime] = useState(0);
+function RecipeDescriptionForm({ recipeDescription, dispatch }) {
+	const [name, setName] = useState(recipeDescription.dishTitle);
+	const [desc, setDesc] = useState(recipeDescription.description);
+	const [prepTime, setPrepTime] = useState(recipeDescription.prepTime);
 
 	return (
 		<>
