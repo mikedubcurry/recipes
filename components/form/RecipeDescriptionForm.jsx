@@ -9,15 +9,60 @@ function RecipeDescriptionForm({ dispatch }) {
 		<>
 			<label htmlFor="recipe-name">
 				Recipe
-				<input id="recipe-name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+				<input
+					id="recipe-name"
+					type="text"
+					value={name}
+					onChange={(e) => {
+						setName(e.target.value);
+						dispatch({
+							type: 'change_desc',
+							payload: {
+								dishTitle: name,
+								description: desc,
+								prepTime: prepTime,
+							},
+						});
+					}}
+				/>
 			</label>
 			<label htmlFor="recipe-desc">
 				Description
-				<input type="text" id="recipe-desc" value={desc} onChange={(e) => setDesc(e.target.value)} />
+				<input
+					type="text"
+					id="recipe-desc"
+					value={desc}
+					onChange={(e) => {
+						setDesc(e.target.value);
+						dispatch({
+							type: 'change_desc',
+							payload: {
+								dishTitle: name,
+								description: desc,
+								prepTime: prepTime,
+							},
+						});
+					}}
+				/>
 			</label>
 			<label htmlFor="recipe-preptime">
 				Prep Time
-				<input type="number" id="recipe-preptime" value={prepTime} onChange={(e) => setPrepTime(e.target.value)} />
+				<input
+					type="number"
+					id="recipe-preptime"
+					value={prepTime}
+					onChange={(e) => {
+						setPrepTime(e.target.value);
+						dispatch({
+							type: 'change_desc',
+							payload: {
+								dishTitle: name,
+								description: desc,
+								prepTime: prepTime,
+							},
+						});
+					}}
+				/>
 			</label>
 		</>
 	);

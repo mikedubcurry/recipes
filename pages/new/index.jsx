@@ -22,11 +22,12 @@ function New() {
 			</ul>
 			<MultipartForm
 				onComplete={() => {
-					console.log({ ingredients });
+					console.log({ ingredients, recipeDescription });
 					dispatchIngredients({ type: 'clear_ingredients' });
+					dipatchRecipeDescription({ type: 'clear_desc' });
 				}}
 			>
-				<RecipeDescriptionForm />
+				<RecipeDescriptionForm dispatch={dipatchRecipeDescription} />
 				<IngredientForm ingredients={ingredients} dispatch={dispatchIngredients} />
 			</MultipartForm>
 		</main>
@@ -42,7 +43,7 @@ function ingredientReducer(ings, action) {
 				let ing = {
 					ingredient: action.payload.ingredientName,
 					unit: action.payload.unit,
-					amount: parseInt(action.payload.amount),
+					amount: action.payload.amount,
 					id: action.payload.id,
 				};
 				return [...ings, ing];
@@ -60,7 +61,7 @@ function ingredientReducer(ings, action) {
 
 function recipeDescriptionReducer(desc, action) {
 	switch (action.type) {
-		case 'changeDesc':
+		case 'change_desc':
 			return action.payload;
 		case 'clear_desc':
 			return {
