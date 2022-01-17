@@ -39,7 +39,6 @@ function IngredientForm({ ingredients, dispatch }) {
 
 	return (
 		<>
-			<form className="flex flex-col h-1/4 w-80 justify-between">
 				<input
 					type="text"
 					value={ingredientName}
@@ -69,7 +68,6 @@ function IngredientForm({ ingredients, dispatch }) {
 				>
 					Add Ingredient
 				</button>
-			</form>
 		</>
 	);
 }

@@ -1,11 +1,18 @@
 import { useReducer, useState } from 'react';
 import EditIngredient from '../../components/form/EditIngredient';
 import IngredientForm from '../../components/form/IngredientForm';
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid';
+import MultipartForm from '../../components/form/MultipartForm';
+import RecipeDescriptionForm from '../../components/form/RecipeDescriptionForm';
 
 function New() {
+	const [recipeDescription, dipatchRecipeDescription] = useReducer(recipeDescriptionReducer, {
+		dishTitle: '',
+		description: '',
+		prepTime: 0,
+	});
 	const [ingredients, dispatchIngredients] = useReducer(ingredientReducer, []);
-	console.log(ingredients);
+
 	return (
 		<main className="container mx-auto flex flex-col h-screen items-center justify-between">
 			<ul className="w-1/2">
@@ -13,7 +20,15 @@ function New() {
 					<EditIngredient key={ing.id} ing={ing} dispatch={dispatchIngredients} />
 				))}
 			</ul>
-			<IngredientForm ingredients={ingredients} dispatch={dispatchIngredients} />
+			<MultipartForm
+				onComplete={() => {
+					console.log({ ingredients });
+					dispatchIngredients({ type: 'clear_ingredients' });
+				}}
+			>
+				<RecipeDescriptionForm />
+				<IngredientForm ingredients={ingredients} dispatch={dispatchIngredients} />
+			</MultipartForm>
 		</main>
 	);
 }
@@ -35,8 +50,25 @@ function ingredientReducer(ings, action) {
 		case 'remove_ingredient':
 			return ings.filter((i) => i.ingredient !== action.payload.ingredient);
 		case 'edit_ingredient':
-			return ings.map((i) => (i.id === action.payload.id ? {...action.payload, id: uuid()} : i));
+			return ings.map((i) => (i.id === action.payload.id ? { ...action.payload, id: uuid() } : i));
+		case 'clear_ingredients':
+			return [];
 		default:
 			return ings;
+	}
+}
+
+function recipeDescriptionReducer(desc, action) {
+	switch (action.type) {
+		case 'changeDesc':
+			return action.payload;
+		case 'clear_desc':
+			return {
+				dishTitle: '',
+				description: '',
+				prepTime: 0,
+			};
+		default:
+			return desc;
 	}
 }
