@@ -21,14 +21,15 @@ function New() {
 				))}
 			</ul>
 			<MultipartForm
-				onComplete={() => {
+				done={() => {
 					console.log({ ingredients, recipeDescription });
 					dispatchIngredients({ type: 'clear_ingredients' });
 					dipatchRecipeDescription({ type: 'clear_desc' });
 				}}
 			>
-				<RecipeDescriptionForm dispatch={dipatchRecipeDescription} />
-				<IngredientForm ingredients={ingredients} dispatch={dispatchIngredients} />
+				<RecipeDescriptionForm recipeDescription={recipeDescription} dispatch={dipatchRecipeDescription} />
+				<IngredientForm dispatch={dispatchIngredients} />
+				
 			</MultipartForm>
 		</main>
 	);
