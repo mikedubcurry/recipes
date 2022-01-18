@@ -22,6 +22,8 @@ function New() {
 		prepTime: 0,
 	});
 	const [ingredients, dispatchIngredients] = useReducer(ingredientReducer, []);
+	const [procedure, dispatchProcedure] = useReducer(procedureReducer, []);
+	const [tags, dispatchTag] = useReducer(tagReducer, []);
 
 	return (
 		<main className="container mx-auto flex flex-col h-screen items-center justify-between">
