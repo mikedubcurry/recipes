@@ -19,21 +19,36 @@ function MultipartForm({ children, done }) {
 		setStep(step + 1);
 	};
 	return (
-		<>
+		<form
+			className="bg-slate-400 w-full flex flex-col items-center justify-evenly px-8 py-4"
+			// action={action}
+			// method={method}
+			onSubmit={(e) => {
+				e.preventDefault();
+			}}
+		>
 			{inProgress ? (
 				<>
 					{children[step]}
 					<div className="w-1/2 flex justify-between">
-						<button className="disabled:invisible" disabled={step === 0} onClick={prevForm}>
+						<button type="button" className="disabled:invisible" disabled={step === 0} onClick={prevForm}>
 							prev
 						</button>
-						<button onClick={nextForm}>next</button>
+						{step === children.length - 1 ? (
+							<button type="submit" onClick={nextForm}>
+								finish
+							</button>
+						) : (
+							<button type="button" onClick={nextForm}>
+								next
+							</button>
+						)}
 					</div>
 				</>
 			) : (
 				<p>all done</p>
 			)}
-		</>
+		</form>
 	);
 }
 

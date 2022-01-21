@@ -7,7 +7,7 @@ function RecipeDescriptionForm({ recipeDescription, dispatch }) {
 
 	return (
 		<>
-			<label htmlFor="recipe-name">
+			<label className="flex flex-col w-full" htmlFor="recipe-name">
 				Recipe
 				<input
 					id="recipe-name"
@@ -26,7 +26,7 @@ function RecipeDescriptionForm({ recipeDescription, dispatch }) {
 					}}
 				/>
 			</label>
-			<label htmlFor="recipe-desc">
+			<label className="flex flex-col w-full" htmlFor="recipe-desc">
 				Description
 				<input
 					type="text"
@@ -45,7 +45,7 @@ function RecipeDescriptionForm({ recipeDescription, dispatch }) {
 					}}
 				/>
 			</label>
-			<label htmlFor="recipe-preptime">
+			<label className="flex flex-col w-full" htmlFor="recipe-preptime">
 				Prep Time
 				<input
 					type="number"

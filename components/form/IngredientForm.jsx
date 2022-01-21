@@ -39,35 +39,45 @@ function IngredientForm({ ingredients, dispatch }) {
 
 	return (
 		<>
+			<label className="flex flex-col w-full" htmlFor="name">
+				Ingredient
 				<input
+					id="name"
 					type="text"
 					value={ingredientName}
 					onChange={(e) => {
 						setIngName(e.target.value);
 					}}
 				/>
+			</label>
+			<label className="flex flex-col w-full" htmlFor="unit">Unit of measure
 				<input
+					id="unit"
 					type="text"
 					value={unit}
 					onChange={(e) => {
 						setUnit(e.target.value);
 					}}
 				/>
+			</label>
+			<label className="flex flex-col w-full" htmlFor="amount">Amount
 				<input
+					id="amount"
 					type="number"
 					value={amount}
 					onChange={(e) => {
 						setAmount(e.target.value);
 					}}
 				/>
-				<button
-					onClick={(e) => {
-						e.preventDefault();
-						addIngredient();
-					}}
-				>
-					Add Ingredient
-				</button>
+			</label>
+			<button
+				onClick={(e) => {
+					e.preventDefault();
+					addIngredient();
+				}}
+			>
+				Add Ingredient
+			</button>
 		</>
 	);
 }

@@ -5,7 +5,7 @@ function ProcedureForm({ dispatch, procedure }) {
 	const [procText, setProcText] = useState('');
 	return (
 		<>
-			<label htmlFor="proc">
+			<label htmlFor="proc" className="flex flex-col w-full">
 				<p>Step by step, enter the step for the recipe.</p>
 				<p>click next when finished</p>
 				<input
@@ -18,6 +18,7 @@ function ProcedureForm({ dispatch, procedure }) {
 				/>
 			</label>
 			<button
+				type='button'
 				onClick={() => {
 					dispatch({ type: 'add_proc', payload: { id: uuid(), txt: procText } });
 					setProcText('');

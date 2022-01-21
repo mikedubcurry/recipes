@@ -8,7 +8,7 @@ function TagForm({ dispatch, tags }) {
 
 	return (
 		<>
-			<label htmlFor="tag">
+			<label className="flex flex-col w-full" htmlFor="tag">
 				Add a Tag
 				<input
 					type="text"
@@ -20,6 +20,7 @@ function TagForm({ dispatch, tags }) {
 				/>
 			</label>
 			<button
+				type='button'
 				onClick={() => {
 					dispatch({
 						type: 'add_tag',
