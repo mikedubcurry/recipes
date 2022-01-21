@@ -25,9 +25,21 @@ function New() {
 	const [procedure, dispatchProcedure] = useReducer(procedureReducer, []);
 	const [tags, dispatchTag] = useReducer(tagReducer, []);
 
+	const submitData = async () => {
+		const response = await fetch('/api/new-recipe', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ ingredients, recipeDescription, procedure, tags }),
+		});
+		const res = await response.json();
+		console.log(res);
+	};
+
 	return (
-		<main className="container mx-auto flex flex-col h-screen items-center justify-between">
-			<ul className="w-1/2">
+		<main className="container mx-auto flex flex-col h-screen items-center justify-center">
+			<ul className="w-1/2 bg-red-400">
 				{ingredients.map((ing) => (
 					<EditIngredient key={ing.id} ing={ing} dispatch={dispatchIngredients} />
 				))}
@@ -41,12 +53,15 @@ function New() {
 				))}
 			</ul>
 			<MultipartForm
-				done={() => {
+				// action="/api/new-recipe"
+				// method="post"
+				done={async () => {
 					console.log({ ingredients, recipeDescription, procedure, tags });
 					dispatchIngredients({ type: 'clear_ingredients' });
 					dipatchRecipeDescription({ type: 'clear_desc' });
 					dispatchProcedure({ type: 'clear_proc' });
-					dispatchTag({type: 'clear_tag'})
+					dispatchTag({ type: 'clear_tag' });
+					await submitData();
 				}}
 			>
 				<RecipeDescriptionForm recipeDescription={recipeDescription} dispatch={dipatchRecipeDescription} />
