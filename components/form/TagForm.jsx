@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
+import Tag from '../Tag'
+import TagList from '../TagList';
+
 // should take list of existing tags or create a new one
 
 function TagForm({ dispatch, tags }) {
-	const [tag, setTag] = useState('');
+	const [tag, setTag] = useState(undefined);
 	console.log(tags);
 	const pickTag = () => {
 		
@@ -24,9 +27,11 @@ function TagForm({ dispatch, tags }) {
 						// console.log(tags.filter(t => t.split(' ').join('').toLowerCase().includes(e.target.value.toLowerCase())));
 						setTag(e.target.value);
 					}}
+
 				/>
+				<TagList tags={tags} selectedTags={[tag]} dispatch={dispatch} />
 			</label>
-			<button
+			{/* <button
 				type="button"
 				onClick={() => {
 					dispatch({
@@ -40,7 +45,7 @@ function TagForm({ dispatch, tags }) {
 				}}
 			>
 				Add Tag
-			</button>
+			</button> */}
 		</>
 	);
 }

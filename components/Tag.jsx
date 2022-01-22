@@ -2,9 +2,9 @@ function Tag({ tag, selected, dispatch }) {
 
     const toggleSelect = () => {
         if(selected) {
-            dispatch({type: 'deselect', payload: tag.id})
+            dispatch({type: 'remove_tag', payload: tag})
         } else {
-            dispatch({type: 'select', payload: tag.id})
+            dispatch({type: 'add_tag', payload: tag})
         }
     }
 	if (selected === undefined) {
