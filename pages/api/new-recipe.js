@@ -42,20 +42,31 @@ export default async function handler(req, res) {
 		.map((w) => w.replace(/[^a-z]/g, ''))
 		.join('-');
 
-	const cook = process.env.COOK_ID || ''
-		
-	const result = await supabase.from('recipes').insert([
+	const cook = process.env.COOK_ID || '';
+
+	const {
+		data: [rec],
+	} = await supabase.from('recipes').insert([
 		{
 			recipe_name: recipe.recipeDescription.dishTitle,
 			description: recipe.recipeDescription.description,
 			slug,
 			ingredients: recipe.ingredients,
-			procedure: recipe.procedure.map(p => p.txt),
+			procedure: recipe.procedure.map((p) => p.txt),
 			prep_time: recipe.recipeDescription.prepTime,
 			cook,
 		},
 	]);
 	//  tags exist
+	if (recipe.tags && recipe.tags.length) {
+		let tags = recipe.tags;
+		console.log(tags);
+		const tagResult = await supabase.from('recipes_tags').insert(
+			tags.map((t) => {
+				return { tag: t.id, recipe: rec.id };
+			})
+		);
+	}
 	// if recipe is created, add tag link to recipe_tag table
-	res.send({ result });
+	res.send({ recipe: rec });
 }
