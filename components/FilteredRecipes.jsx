@@ -30,7 +30,7 @@ function FilteredRecipes({ recipes, tags }) {
 		<>
 			<div className="md:col-start-1 md:col-end-3">
 				<RecipeFilter tags={selectedTags} dispatch={dispatch} inputState={[filterInput, setFilterInput]} />
-				<TagList selectedTags={selectedTags.map(({id}) => id)} dispatch={dispatch} tags={tags} />
+				<TagList editing={null} selectedTags={selectedTags.map(({id}) => id)} dispatch={dispatch} tags={tags} />
 			</div>
 			{filteredRecipes.map((recipe) => (
 				<RecipeCard key={recipe.id} recipe={recipe} />
