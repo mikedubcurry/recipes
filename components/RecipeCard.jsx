@@ -45,27 +45,27 @@ function RecipeCard({ recipe }) {
 
 export default RecipeCard;
 
-RecipeCard.propTypes = {
-	recipe: PropTypes.shape({
-		id: PropTypes.string,
-		dishTitle: PropTypes.string,
-		slug: PropTypes.string,
-		description: PropTypes.string,
-		prepTime: PropTypes.number,
-		totalTime: PropTypes.number,
-		ingredients: PropTypes.arrayOf(
-			PropTypes.shape({
-				ingredient: PropTypes.string,
-				amount: PropTypes.number,
-				unit: PropTypes.string,
-			})
-		),
-		procedure: PropTypes.arrayOf(PropTypes.string),
-		tags: PropTypes.arrayOf(
-			PropTypes.shape({
-				tag: PropTypes.string,
-				id: PropTypes.string,
-			})
-		),
-	}),
-};
+// RecipeCard.propTypes = {
+// 	recipe: PropTypes.shape({
+// 		id: PropTypes.string,
+// 		dishTitle: PropTypes.string,
+// 		slug: PropTypes.string,
+// 		description: PropTypes.string,
+// 		prepTime: PropTypes.number,
+// 		totalTime: PropTypes.number,
+// 		ingredients: PropTypes.arrayOf(
+// 			PropTypes.shape({
+// 				ingredient: PropTypes.string,
+// 				amount: PropTypes.string || PropTypes.number,
+// 				unit: PropTypes.string,
+// 			})
+// 		),
+// 		procedure: PropTypes.arrayOf(PropTypes.string),
+// 		tags: PropTypes.arrayOf(
+// 			PropTypes.shape({
+// 				tag: PropTypes.string,
+// 				id: PropTypes.string,
+// 			})
+// 		),
+// 	}),
+// };

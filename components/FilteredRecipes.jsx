@@ -30,7 +30,7 @@ function FilteredRecipes({ recipes, tags }) {
 		<>
 			<div className="md:col-start-1 md:col-end-3">
 				<RecipeFilter tags={selectedTags} dispatch={dispatch} inputState={[filterInput, setFilterInput]} />
-				<TagList selectedTags={selectedTags} dispatch={dispatch} tags={tags} />
+				<TagList selectedTags={selectedTags.map(({id}) => id)} dispatch={dispatch} tags={tags} />
 			</div>
 			{filteredRecipes.map((recipe) => (
 				<RecipeCard key={recipe.id} recipe={recipe} />
@@ -54,7 +54,7 @@ function dishTitleInclude(recipe, input) {
 function tagsInclude(recipe, tags) {
 	let recipeTags = recipe.tags.map(({ id }) => id);
 
-	for (let id of tags) {
+	for (let {id} of tags) {
 		if (!recipeTags.includes(id)) {
 			return false;
 		}
@@ -62,15 +62,15 @@ function tagsInclude(recipe, tags) {
 	return true;
 }
 
-function tagsReducer(tagIds, action) {
+function tagsReducer(tags, action) {
 	switch (action.type) {
-		case 'select':
-			return [...tagIds, action.payload];
-		case 'deselect':
-			return tagIds.filter((id) => action.payload !== id);
+		case 'add_tag':
+			return [...tags, action.payload];
+		case 'remove_tag':
+			return tags.filter(({id}) => action.payload.id !== id);
 		case 'reset':
 			return [];
 		default:
-			return tagIds;
+			return tags;
 	}
 }
