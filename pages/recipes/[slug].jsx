@@ -3,7 +3,7 @@ import { supabase } from '../../utils/supabaseClient';
 function RecipePage({ recipe }) {
 	return (
 		<div className="container m-auto py-4 p-auto px-2">
-			<header className="h-72">
+			<header className="min-h-72">
 				<h1 className="text-3xl">{recipe.recipe_name}</h1>
 				<figure>
 					<img
@@ -13,8 +13,13 @@ function RecipePage({ recipe }) {
 						width="200"
 						height="200"
 					/>
-					<figcaption className="text-slate-600">{recipe.description}</figcaption>
+					<figcaption className="text-slate-600 text-center">{recipe.description}</figcaption>
 				</figure>
+				<aside>
+					<strong>Prep Time</strong>
+					<br />
+					{recipe.prep_time} {recipe.prep_time <= 1 ? 'minute' : 'minutes'}
+				</aside>
 			</header>
 			<section className="bg-yellow-600 -mx-2 px-2 py-4">
 				<h2 className="text-xl">Ingredients</h2>
@@ -29,11 +34,11 @@ function RecipePage({ recipe }) {
 					))}
 				</ul>
 			</section>
-			<section className='bg-purple-600 -mx-2 px-2 py-4'>
+			<section className="bg-purple-600 -mx-2 px-2 py-4">
 				<h2 className="text-xl">Instructions:</h2>
 				<ol>
 					{recipe.procedure.map((step) => (
-						<li className='list-decimal ml-10' key={step}>
+						<li className="list-decimal ml-10" key={step}>
 							<p>{step}</p>
 						</li>
 					))}
