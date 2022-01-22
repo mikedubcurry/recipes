@@ -1,7 +1,5 @@
 import { supabase } from '../../utils/supabaseClient';
 
-import { validJSON } from '../../utils/validJSON';
-
 export default async function handler(req, res) {
 	const recipe = req.body;
 	console.log(recipe);
@@ -57,7 +55,7 @@ export default async function handler(req, res) {
 			cook,
 		},
 	]);
-	console.log(result);
 	//  tags exist
-	res.send({ recipe });
+	// if recipe is created, add tag link to recipe_tag table
+	res.send({ result });
 }

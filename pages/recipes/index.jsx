@@ -4,7 +4,7 @@ import RecipeCard from "../../components/RecipeCard";
 
 function AllRecipes({ recipes }) {
     return (
-        <ul className="container m-auto min-w-fill">
+        <ul className="container m-auto">
             {recipes.map((recipe) => (
                 <li key={recipe.id}>
                     <RecipeCard recipe={recipe} />
