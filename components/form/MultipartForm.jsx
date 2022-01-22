@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ActionButton from '../ActionBtn';
 
 function MultipartForm({ children, done }) {
 	const [step, setStep] = useState(0);
@@ -12,7 +13,6 @@ function MultipartForm({ children, done }) {
 	const nextForm = () => {
 		if (step === children.length - 1) {
 			setInprogress(false);
-			// may take args?
 			done();
 			return;
 		}
@@ -21,8 +21,6 @@ function MultipartForm({ children, done }) {
 	return (
 		<form
 			className="bg-slate-400 w-full flex flex-col items-center justify-evenly px-8 py-4"
-			// action={action}
-			// method={method}
 			onSubmit={(e) => {
 				e.preventDefault();
 			}}
@@ -31,17 +29,12 @@ function MultipartForm({ children, done }) {
 				<>
 					{children[step]}
 					<div className="w-1/2 flex justify-between">
-						<button type="button" className="disabled:invisible" disabled={step === 0} onClick={prevForm}>
-							prev
-						</button>
+						{step !== 0 && <ActionButton btnText="prev" handleClick={prevForm} />}
+
 						{step === children.length - 1 ? (
-							<button type="submit" onClick={nextForm}>
-								finish
-							</button>
+							<ActionButton btnText="finish" handleClick={nextForm} />
 						) : (
-							<button type="button" onClick={nextForm}>
-								next
-							</button>
+							<ActionButton btnText="next" handleClick={nextForm} />
 						)}
 					</div>
 				</>

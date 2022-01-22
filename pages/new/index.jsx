@@ -16,7 +16,7 @@ import {
 import EditProcedure from '../../components/form/EditProcedure';
 import { supabase } from '../../utils/supabaseClient';
 
-function New({data}) {
+function New({ data }) {
 	const [recipeDescription, dipatchRecipeDescription] = useReducer(recipeDescriptionReducer, {
 		dishTitle: '',
 		description: '',
@@ -25,7 +25,7 @@ function New({data}) {
 	const [ingredients, dispatchIngredients] = useReducer(ingredientReducer, []);
 	const [procedure, dispatchProcedure] = useReducer(procedureReducer, []);
 	const [tags, dispatchTag] = useReducer(tagReducer, []);
-console.log(data);
+
 	const submitData = async () => {
 		const response = await fetch('/api/new-recipe', {
 			method: 'post',
@@ -35,7 +35,6 @@ console.log(data);
 			body: JSON.stringify({ ingredients, recipeDescription, procedure, tags }),
 		});
 		const res = await response.json();
-		console.log(res);
 	};
 
 	return (
@@ -54,10 +53,7 @@ console.log(data);
 				))}
 			</ul>
 			<MultipartForm
-				// action="/api/new-recipe"
-				// method="post"
 				done={async () => {
-					console.log({ ingredients, recipeDescription, procedure, tags });
 					dispatchIngredients({ type: 'clear_ingredients' });
 					dipatchRecipeDescription({ type: 'clear_desc' });
 					dispatchProcedure({ type: 'clear_proc' });
@@ -77,12 +73,11 @@ console.log(data);
 export default New;
 
 export async function getStaticProps(context) {
-	const data = await supabase.from('tags').select('*')
+	const data = await supabase.from('tags').select('*');
 
-	
-  return {
-    props: {
-			data: data.body
+	return {
+		props: {
+			data: data.body,
 		}, // will be passed to the page component as props
-  }
+	};
 }

@@ -4,9 +4,10 @@ import TagList from '../../components/TagList';
 import ActionButton from '../../components/ActionBtn';
 import { useReducer, useState } from 'react';
 
-function RecipePage({ recipe }) {
+function RecipePage({ recipe, allTags }) {
 	const [editTags, setEditTags] = useState(false);
 	const [tags, dispatchTags] = useReducer(tagsReducer, recipe.tags);
+	const [addingTags, setAddingTags] = useState(false);
 
 	const updateTags = async () => {
 		const res = await fetch('/api/edit-tags', {
@@ -15,6 +16,8 @@ function RecipePage({ recipe }) {
 		});
 		const data = await res.json();
 	};
+
+	let extraTags = allTags.filter((tag) => !tags.map((t) => t.id).includes(tag.id));
 
 	return (
 		<div className="container m-auto py-4 p-auto px-2">
@@ -45,6 +48,7 @@ function RecipePage({ recipe }) {
 									btnText="Cancel"
 									handleClick={() => {
 										setEditTags(false);
+										setAddingTags(false);
 										// set current tags to initial value
 										dispatchTags({ type: 'reset_tag', payload: recipe.tags });
 									}}
@@ -54,6 +58,7 @@ function RecipePage({ recipe }) {
 									btnText="Save Changes"
 									handleClick={() => {
 										setEditTags(false);
+										setAddingTags(false);
 										// trigger /api/edit-tags
 										updateTags();
 									}}
@@ -63,7 +68,14 @@ function RecipePage({ recipe }) {
 							<ActionButton btnText="Edit Tags" handleClick={() => setEditTags(true)} />
 						)}
 					</div>
-					<TagList editing={editTags} tags={tags} dispatch={dispatchTags} selectedTags={[tags.map(({ id }) => id)]} />
+					<TagList
+						onEdit={() => setAddingTags(true)}
+						editing={editTags}
+						tags={tags}
+						dispatch={dispatchTags}
+						selectedTags={[tags.map(({ id }) => id)]}
+					/>
+					{addingTags && <TagList tags={extraTags} dispatch={dispatchTags} editing={''} selectedTags={[]} />}
 				</div>
 			</header>
 			<section className="bg-yellow-600 -mx-2 px-2 py-4">
@@ -100,9 +112,10 @@ export async function getStaticProps(context) {
 		console.log('something happened...', error);
 		return;
 	}
+	const { data: allTags } = await supabase.from('tags').select('*');
 
 	return {
-		props: { recipe: recipe[0] },
+		props: { recipe: recipe[0], allTags },
 	};
 }
 

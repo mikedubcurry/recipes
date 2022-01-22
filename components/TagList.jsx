@@ -1,7 +1,7 @@
 import ActionButton from './ActionBtn';
 import Tag from './Tag';
 
-function TagList({ tags, selectedTags, editing, dispatch }) {
+function TagList({ tags, selectedTags, editing, onEdit, dispatch }) {
 	return (
 		<ul className="flex justify-between flex-wrap gap-4 items-center w-full">
 			{tags.map(({ tag, id }) => (
@@ -15,7 +15,7 @@ function TagList({ tags, selectedTags, editing, dispatch }) {
 			))}
 			{editing ? (
 				<li>
-					<ActionButton btnText="Add Tag" />
+					<ActionButton btnText="Add Tag" handleClick={onEdit} />
 				</li>
 			) : null}
 		</ul>

@@ -67,6 +67,6 @@ export default async function handler(req, res) {
 			})
 		);
 	}
-	// if recipe is created, add tag link to recipe_tag table
+
 	res.send({ recipe: rec });
 }
