@@ -1,8 +1,9 @@
+import { mysql_real_escape_string } from '../../utils/escape';
 import { supabase } from '../../utils/supabaseClient';
 
 export default async function handler(req, res) {
 	const recipe = req.body;
-	console.log(recipe);
+
 	if (!recipe) {
 		res.status(400).send({ error: 'must pass recipe' });
 		return;
@@ -34,33 +35,49 @@ export default async function handler(req, res) {
 	//  procedure exists
 	if (!recipe.procedure.length) {
 		res.status(400).send({ error: 'must pass procedure' });
+		return;
 	}
 
-	const slug = recipe.recipeDescription.dishTitle
+	const slug = mysql_real_escape_string(recipe.recipeDescription.dishTitle)
 		.split(' ')
 		.map((w) => w.toLowerCase())
 		.map((w) => w.replace(/[^a-z]/g, ''))
+		.filter((w) => w)
 		.join('-');
+
+	if (!slug.trim()) {
+		res.status(400).send({ error: 'mustve passed some crazy characters there...' });
+		return;
+	}
 
 	const cook = process.env.COOK_ID || '';
 
-	const {
-		data: [rec],
-	} = await supabase.from('recipes').insert([
+	const { data, error } = await supabase.from('recipes').insert([
 		{
-			recipe_name: recipe.recipeDescription.dishTitle,
-			description: recipe.recipeDescription.description,
+			recipe_name: mysql_real_escape_string(recipe.recipeDescription.dishTitle),
+			description: mysql_real_escape_string(recipe.recipeDescription.description),
 			slug,
-			ingredients: recipe.ingredients,
-			procedure: recipe.procedure.map((p) => p.txt),
+			ingredients: recipe.ingredients.map((ing) => {
+				return {
+					...ing,
+					ingredient: mysql_real_escape_string(ing.ingredient),
+					unit: mysql_real_escape_string(ing.unit),
+				};
+			}),
+			procedure: recipe.procedure.map((p) => mysql_real_escape_string(p.txt)),
 			prep_time: recipe.recipeDescription.prepTime,
 			cook,
 		},
 	]);
+	if (error) {
+		// console.log({data, error});
+		res.send({ error });
+		return;
+	}
+	let [rec] = data;
 	//  tags exist
 	if (recipe.tags && recipe.tags.length) {
 		let tags = recipe.tags;
-		console.log(tags);
 		const tagResult = await supabase.from('recipes_tags').insert(
 			tags.map((t) => {
 				return { tag: t.id, recipe: rec.id };
