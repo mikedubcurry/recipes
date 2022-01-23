@@ -1,5 +1,4 @@
 function Tag({ tag, selected, dispatch, editing }) {
-    console.log(selected);
 	const toggleSelect = () => {
 		if (editing !== false) {
 			if (selected) {

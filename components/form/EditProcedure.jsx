@@ -8,7 +8,7 @@ function EditProcedure({ proc, dispatch }) {
 		setEditting(false);
 		setProcText(proc.txt);
 	};
-	console.log(editting);
+
 	return (
 		<li className="w-full flex mb-4 justify-between list-style-none bg-yellow-200 py-2 px-4 rounded-xl">
 			<span className="grid grid-cols-2 grid-rows-2">
