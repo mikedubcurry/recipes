@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import FilterBar from './FilterBar';
 
 import RecipeCard from './RecipeCard';
@@ -28,13 +29,20 @@ function FilteredRecipes({ recipes, tags }) {
 
 	return (
 		<>
-			<div className="md:col-start-1 md:col-end-3">
+			<div className="">
 				<RecipeFilter tags={selectedTags} dispatch={dispatch} inputState={[filterInput, setFilterInput]} />
-				<TagList editing={null} selectedTags={selectedTags.map(({id}) => id)} dispatch={dispatch} tags={tags} />
+				<TagList editing={null} selectedTags={selectedTags.map(({ id }) => id)} dispatch={dispatch} tags={tags} />
 			</div>
-			{filteredRecipes.map((recipe) => (
-				<RecipeCard key={recipe.id} recipe={recipe} />
-			))}
+			<TransitionGroup
+				className="md:container sm:container grid md:grid-cols-2 gap-4 py-4 h-full"
+				component="section"
+			>
+				{filteredRecipes.map((recipe) => (
+					<CSSTransition classNames="item" timeout={300} key={recipe.id}>
+						<RecipeCard key={recipe.id} recipe={recipe} />
+					</CSSTransition>
+				))}
+			</TransitionGroup>
 		</>
 	);
 }
@@ -54,7 +62,7 @@ function dishTitleInclude(recipe, input) {
 function tagsInclude(recipe, tags) {
 	let recipeTags = recipe.tags.map(({ id }) => id);
 
-	for (let {id} of tags) {
+	for (let { id } of tags) {
 		if (!recipeTags.includes(id)) {
 			return false;
 		}
@@ -67,7 +75,7 @@ function tagsReducer(tags, action) {
 		case 'add_tag':
 			return [...tags, action.payload];
 		case 'remove_tag':
-			return tags.filter(({id}) => action.payload.id !== id);
+			return tags.filter(({ id }) => action.payload.id !== id);
 		case 'reset':
 			return [];
 		default:
