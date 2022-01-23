@@ -5,7 +5,6 @@ function Tag({ tag, selected, dispatch, editing }) {
 				console.log('remove');
 				dispatch({ type: 'remove_tag', payload: tag });
 			} else {
-                console.log('add');
 				dispatch({ type: 'add_tag', payload: tag });
 			}
 		}
