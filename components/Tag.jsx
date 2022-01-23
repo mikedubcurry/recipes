@@ -17,10 +17,11 @@ function Tag({ tag, selected, dispatch, editing }) {
 			<li
 				className={`transition max-w-fit ${
 					selected && !editing ? 'bg-orange-500' : 'bg-orange-400 hover:bg-orange-300'
-				} ${editing ? 'animate-wiggle' : ''} ${editing ? 'hover:line-through' : ''} px-4 py-2 rounded-xl`}
+				} ${editing ? 'animate-wiggle' : ''} ${editing ? 'hover:line-through' : ''}  px-4 py-2 rounded-xl`}
 			>
-				<button 				aria-label={'filter recipes by ' + tag.tag}
- onClick={toggleSelect}>{tag.tag}</button>
+				<button className="outline-offset-8" aria-label={'filter recipes by ' + tag.tag} onClick={toggleSelect}>
+					{tag.tag}
+				</button>
 			</li>
 		);
 	}
