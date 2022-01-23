@@ -30,8 +30,9 @@ function FilteredRecipes({ recipes, tags }) {
 	return (
 		<>
 			<div className="">
-				<RecipeFilter tags={selectedTags} dispatch={dispatch} inputState={[filterInput, setFilterInput]} />
+				<RecipeFilter tags={selectedTags} dispatch={dispatch} inputState={[filterInput, setFilterInput]}>
 				<TagList editing={null} selectedTags={selectedTags.map(({ id }) => id)} dispatch={dispatch} tags={tags} />
+				</RecipeFilter>
 			</div>
 			<TransitionGroup
 				className="md:container sm:container grid md:grid-cols-2 gap-4 py-4 h-full"

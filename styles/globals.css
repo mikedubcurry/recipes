@@ -37,6 +37,23 @@ a {
 	transition: all 300ms ease-in;
 }
 
+.tags-enter {
+	opacity: 0;
+	bottom: 2rem;
+}
+.tags-enter-active, .tags-enter-done {
+	opacity: 1;
+	bottom: 0;
+}
+.tags-exit {
+	opacity: 1;
+	bottom: 0;
+}
+.tags-exit-active {
+	bottom: 2rem;
+	opacity: 0;
+}
+
 @keyframes fadeIn {
 	from {
 		opacity: 0;
