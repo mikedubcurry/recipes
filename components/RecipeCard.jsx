@@ -13,7 +13,7 @@ function RecipeCard({ recipe }) {
 	return (
 		<Link passHref href={`/recipes/${recipe.slug}`}>
 			<a aria-label={'recipe card ' + recipe.recipe_name} className="w-full">
-				<article className="flex flex-col justify-between cursor-pointer w-full h-full min-h-[150px] transition-all duration-300 shadow-lg hover:shadow-xl bg-red-300 hover:bg-red-400 p-8 rounded-xl ">
+				<article className="flex flex-col justify-between cursor-pointer w-full h-full min-h-[150px] transition-all duration-300 shadow-lg hover:shadow-xl bg-yellow-200 hover:bg-yellow-400 p-8 rounded-xl ">
 					<header className="text-xl">{capitalize(recipe.recipe_name)}</header>
 					<p>{recipe.description}</p>
 					<div className="">

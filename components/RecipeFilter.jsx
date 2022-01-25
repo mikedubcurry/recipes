@@ -6,7 +6,7 @@ function RecipeFilter({ inputState, dispatch, tags, children }) {
 	const [tagsOpen, setTagsOpen] = useState(false);
 
 	return (
-		<div className="transition-all container relative bg-purple-200 p-2 rounded-xl shadow w-full flex-col sm:flex-row sm:w-1/2 items-center mb-4 flex justify-center gap-2 md:gap-4">
+		<div className="transition-all container relative bg-purple-200 p-2 rounded-xl shadow w-full flex-col items-center mb-4 flex justify-center gap-2 md:gap-4">
 			<label className="z-10 self-start sm:self-center" htmlFor="filterRecipes">
 				Filter Recipes:
 			</label>
@@ -22,7 +22,7 @@ function RecipeFilter({ inputState, dispatch, tags, children }) {
 			/>
 			<div className="w-full z-10 flex flex-row-reverse justify-between">
 				<button
-					className="px-4 py-2 self-end md:w-full md:self-center rounded-lg bg-blue-300 disabled:bg-gray-400 disabled:text-gray-200"
+					className="px-4 py-2 self-end rounded-lg bg-blue-300 disabled:bg-gray-400 disabled:text-gray-200"
 					disabled={filterInput.length === 0 && tags.length === 0}
 					onClick={() => {
 						setFilterInput('');
@@ -32,17 +32,11 @@ function RecipeFilter({ inputState, dispatch, tags, children }) {
 					Clear Filter
 				</button>
 				{tagsOpen ? (
-					<button
-						onClick={() => setTagsOpen(false)}
-						className="px-4 py-2 self-start md:w-full md:self-center rounded-lg bg-blue-300"
-					>
+					<button onClick={() => setTagsOpen(false)} className="px-4 py-2 self-start rounded-lg bg-blue-300">
 						Hide Tags
 					</button>
 				) : (
-					<button
-						onClick={() => setTagsOpen(true)}
-						className="px-4 py-2 self-start md:w-full md:self-center rounded-lg bg-blue-300"
-					>
+					<button onClick={() => setTagsOpen(true)} className="px-4 py-2 self-start rounded-lg bg-blue-300">
 						Show Tags
 					</button>
 				)}
