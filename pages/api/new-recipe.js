@@ -70,7 +70,6 @@ export default async function handler(req, res) {
 		},
 	]);
 	if (error) {
-		// console.log({data, error});
 		res.send({ error });
 		return;
 	}
