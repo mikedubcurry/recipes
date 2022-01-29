@@ -3,7 +3,6 @@ import Auth from '../../components/auth/Auth';
 
 
 function AccountPage({ user }) {
-	console.log(user);
 
 	return (
 		<section>

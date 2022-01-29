@@ -5,11 +5,15 @@ import defaultHandler from './_defaultHandler';
 const handler = defaultHandler()
 	.post(async (req, res) => {
 		const { user, error } = await logIn(JSON.parse(req.body));
-		console.log({ user, error });
 
 		if (user) {
 			authenticateUser(res, user);
-			res.json({ user });
+			res.json({
+				user: {
+					email: user.email,
+					id: user.id,
+				},
+			});
 		} else {
 			res.status(404).json({ error: 'invalid credentials' });
 		}
