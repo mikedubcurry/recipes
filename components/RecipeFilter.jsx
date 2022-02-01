@@ -6,12 +6,12 @@ function RecipeFilter({ inputState, dispatch, tags, children }) {
 	const [tagsOpen, setTagsOpen] = useState(false);
 
 	return (
-		<div className="transition-all container relative bg-purple-200 p-2 rounded-xl shadow w-full flex-col items-center mb-4 flex justify-center gap-2 md:gap-4">
+		<div className="dark:bg-indigo-900 dark:text-slate-300 transition-all container relative bg-purple-200 p-2 rounded-xl shadow w-full flex-col items-center mb-4 flex justify-center gap-2 md:gap-4">
 			<label className="z-10 self-start sm:self-center" htmlFor="filterRecipes">
 				Filter Recipes:
 			</label>
 			<input
-				className="z-10 bg-slate-400 w-full rounded-xl px-8 py-2 text-black placeholder:text-gray-200"
+				className="dark:bg-slate-800 z-10 bg-slate-400 w-full rounded-xl px-8 py-2 text-black placeholder:text-gray-200"
 				autoComplete="off"
 				placeholder="Filter recipes..."
 				id="filterRecipes"
@@ -22,7 +22,7 @@ function RecipeFilter({ inputState, dispatch, tags, children }) {
 			/>
 			<div className="w-full z-10 flex flex-row-reverse justify-between">
 				<button
-					className="px-4 py-2 self-end rounded-lg bg-blue-300 disabled:bg-gray-400 disabled:text-gray-200"
+					className="dark:bg-blue-800 dark:disabled:grayscale px-4 py-2 self-end rounded-lg bg-blue-300 disabled:bg-gray-400 disabled:text-gray-200"
 					disabled={filterInput.length === 0 && tags.length === 0}
 					onClick={() => {
 						setFilterInput('');
@@ -32,11 +32,11 @@ function RecipeFilter({ inputState, dispatch, tags, children }) {
 					Clear Filter
 				</button>
 				{tagsOpen ? (
-					<button onClick={() => setTagsOpen(false)} className="px-4 py-2 self-start rounded-lg bg-blue-300">
+					<button onClick={() => setTagsOpen(false)} className="dark:bg-blue-800 px-4 py-2 self-start rounded-lg bg-blue-300">
 						Hide Tags
 					</button>
 				) : (
-					<button onClick={() => setTagsOpen(true)} className="px-4 py-2 self-start rounded-lg bg-blue-300">
+					<button onClick={() => setTagsOpen(true)} className="dark:bg-blue-800 px-4 py-2 self-start rounded-lg bg-blue-300">
 						Show Tags
 					</button>
 				)}
