@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 
 function Nav() {
@@ -23,8 +24,8 @@ function Nav() {
 						New
 					</span>
 				</a>
-			</Link>
-		</nav>
+			</Link> 
+			</nav>
 	);
 }
 
